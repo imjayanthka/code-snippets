@@ -140,14 +140,10 @@ namespace :data do
       CSV.foreach(input_file, :headers => true) do |row|
         if row['Deactivation Flag'] == 'DEACTIVATED'
             #When deactivated Check if available then deactivate
-            puts Service.exists?(:cpt_code row['Procedure Code'])
-            puts Organization.where(:name row['Category 2'])
-            
+            puts Service.exists?(cpt_code: row['Procedure Code'])
         else
             #Check if available if not add to the database
-            puts Service.exists?(:cpt_code row['Procedure Code'])
-            puts Organization.where(:name row['Category 2'])
-
+            puts Service.exists?(cpt_code: row['Procedure Code'])
         end
         # service = Service.new(
         #                     :cpt_code => row['Procedure Code'],
